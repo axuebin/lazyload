@@ -26,7 +26,7 @@ function throttle(fn, mustRun = 500) {
   let previous = null;
   return function() {
     const now = new Date();
-    const context = this,
+    const context = this;
     const args = arguments;
     if (!previous)
       previous = now;
