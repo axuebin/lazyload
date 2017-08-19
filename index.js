@@ -21,6 +21,7 @@ function loadImg(el) {
     el.src = source;
   }
 }
+
 function throttle(fn, mustRun = 500) {
   const timer = null;
   let previous = null;
@@ -28,8 +29,9 @@ function throttle(fn, mustRun = 500) {
     const now = new Date();
     const context = this;
     const args = arguments;
-    if (!previous)
+    if (!previous){
       previous = now;
+    }
     const remaining = now - previous;
     if (mustRun && remaining >= mustRun) {
       fn.apply(context, args);
