@@ -6,18 +6,25 @@ function isInSight(el) {
   return bound.top <= clientHeight + 100;
 }
 
+let index = 0;
 function checkImgs() {
   const imgs = document.querySelectorAll('.my-photo');
-  Array.from(imgs).forEach(el => {
-    if (isInSight(el)) {
-      loadImg(el);
+  for (let i = index; i < imgs.length; i++) {
+    if (isInSight(imgs[i])) {
+      loadImg(imgs[i]);
+      index = i;
     }
-  })
+  }
+  // Array.from(imgs).forEach(el => {
+  //   if (isInSight(el)) {
+  //     loadImg(el);
+  //   }
+  // })
 }
 
 function loadImg(el) {
   if (!el.src) {
-    const source = el.getAttribute("data-src");
+    const source = el.dataset.src;
     el.src = source;
   }
 }
@@ -29,7 +36,7 @@ function throttle(fn, mustRun = 500) {
     const now = new Date();
     const context = this;
     const args = arguments;
-    if (!previous){
+    if (!previous) {
       previous = now;
     }
     const remaining = now - previous;
